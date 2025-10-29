@@ -208,7 +208,7 @@
             margin-bottom: 50px;
             line-height: 1.7;
             font-weight: 400;
-            max-width: 500px;
+            max-width: 1000px;
         }
 
         .cta-button {
@@ -763,9 +763,13 @@
         <div class="hero-content fade-in-up">
             <div class="hero-label">Data Professional</div>
             <h1>Turn Data Into Decisions</h1>
-            <p>I help companies unlock insights from their data through strategic analysis, intuitive dashboards, and machine learning solutions. 8+ years building data infrastructure that matters.</p>
+            <p>
+I’m passionate about solving complex problems using data. I enjoy exploring large, messy datasets, uncovering patterns, and building machine learning solutions that turn insights into action. Over the past four years, I’ve helped organizations design analytical frameworks, create intuitive dashboards, and implement models that drive smarter decisions.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;What excites me most is discovering the story behind the numbers and using data to create meaningful impact. I thrive on challenges that require critical thinking, experimentation, and scalable solutions that can transform the way businesses operate.
+</p>
             <div>
                 <a href="#work" class="cta-button">See My Work</a>
+                <a href="https://github.com/Amanjhagta/Resume/blob/main/Resume_ft.docx?raw= True" target="_blank" class="cta-secondary">Download Resume</a>
                 <a href="#contact" class="cta-secondary">Get In Touch</a>
             </div>
         </div>
@@ -781,7 +785,7 @@
             </div>
             <div class="stat-item">
                 <div class="stat-number" data-target="8">0</div>
-                <div class="stat-label">Total Experience</div>
+                <div class="stat-label">Total Years</div>
             </div>
             <div class="stat-item">
                 <div class="stat-number" data-target="5">0</div>
@@ -809,6 +813,7 @@
                 <button class="filter-btn" data-filter="Machine-Learning">Machine Learning</button>
                 <button class="filter-btn" data-filter="sql">SQL</button>
                 <button class="filter-btn" data-filter="Report">Reports</button>
+                <button class="filter-btn" data-filter="Finance">Finance</button>
             </div>
 
             <div class="gallery-grid" id="galleryGrid"></div>
@@ -824,18 +829,18 @@
             </div>
 
             <div class="about-text fade-in-up">
-                <p>I'm a data engineer and analyst with 8+ years of experience transforming raw data into strategic insights. I started as an engineer, then fell in love with data. Now I blend technical depth with business acumen to solve real problems.</p>
+                <p>I'm a data analyst with 8+ years of experience transforming raw data into strategic insights. I started as an engineer, then fell in love with data. Now I blend technical depth with business acumen to solve real problems.</p>
                 <p>I specialize in building dashboards that executives actually use, analyzing datasets to uncover hidden patterns, and creating ML models that drive measurable results. I work across Power BI, SQL, Python, and cloud platforms to deliver end-to-end data solutions.</p>
             </div>
 
             <div class="skills-list fade-in-up">
                 <div class="skill-item">
                     <h3>Data Visualization</h3>
-                    <p>Power BI, Tableau dashboards that drive decisions</p>
+                    <p>Power BI, Looker, Tableau dashboards that drive decisions</p>
                 </div>
                 <div class="skill-item">
                     <h3>Statistical Analysis</h3>
-                    <p>Uncovering insights from complex datasets</p>
+                    <p>Proficient in descriptive & inferential statistics, hypothesis testing (t-test, chi-square, ANOVA), regression, time series analysis, clustering, PCA, and multivariate analysis using R, Python, SQL, and Tableau.</p>
                 </div>
                 <div class="skill-item">
                     <h3>Machine Learning</h3>
@@ -957,12 +962,17 @@
         };
 
         // Intersection Observer for Stats
-        const statsObserver = new IntersectionObserver((entries) => {
+         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const statNumbers = document.querySelectorAll('.stat-number');
-                    statNumbers.forEach(number => {
-                        const target = parseInt(number.dataset.target);
+                    statNumbers.forEach((number, index) => {
+                        let target = parseInt(number.dataset.target);
+                        // Dynamically set project count for first stat item
+                        if (index === 0) {
+                            target = projects.length;
+                            number.dataset.target = target;
+                        }
                         animateCounter(number, target);
                     });
                     statsObserver.unobserve(entry.target);
@@ -1037,7 +1047,17 @@
                 description: "Comparative analysis of CAPM, Fama-French, XGBoost, and Random Forest models for predicting NVIDIA stock returns using 10 years of financial data.",
                 tech: ["Python", "Pandas", "Numpy", "Matplotlib","scikit-learn"],
                 link: "https://github.com/Amanjhagta/Data-Science/tree/main/Modernizing%20Risk-Return%20Analysis%3A%20Machine%20Learning%20vs%20Traditional%20Models"
+            },
+            {
+                id: 8,
+                title: "Fundamental analysis on Home Depot to calculate its THD_Valuation",
+                category: "Finance",
+                image: "https://github.com/Amanjhagta/Pictures/blob/main/THD_logo.jpg?raw=true",
+                description: "Fundamental analysis of The Home Depot (HD) using the Constant-Growth (Gordon) Model and P/E Ratio analysis to determine intrinsic value. The project concludes the stock is overvalued and recommends a 'sell'",
+                tech: ["Excel", "Financial Modeling", "Fundamental Analysis", "CAPM", "Bloomberg Terminal"],
+                link: "https://github.com/Amanjhagta/Amanjhagta/tree/main/THD_Valuation"
             }
+
         ];
 
         const galleryGrid = document.getElementById('galleryGrid');
